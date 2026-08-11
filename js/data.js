@@ -705,10 +705,23 @@ const posts = [
     { title: 'Graphura · Async Work · Productivity', link: 'https://www.linkedin.com/posts/internship-in-graphura-india-private-limited_graphura-asyncwork-productivity-ugcPost-7463889227823489024-9wb-' },
 ];
 
-const skills = ['[Figma]', '[Photoshop]', '[Procreate]', '[Illustrator]', '[HTML/CSS/JS]', '[Python]', '[React]', '[Notion]', '[Premiere Pro]', '[After Effects]', '[English]', '[Hindi]'];
 
-// Explored — each category is a single entry.
-// Tap an entry to see one complete description.
+const skills = [
+    '[Microsoft Office]',
+    '[Canva]',
+    '[WordPress (Content & SEO)]',
+    '[Video Editing]',
+    '[Adobe Lightroom (Elementary Proficiency)]',
+    '[Leadership]',
+    '[Communication]',
+    '[Problem Solving]',
+    '[Research & Ideation]',
+    '[Creative Writing]',
+    '[Guitar]',
+    '[Photography]',
+    '[Travelling]'
+];
+
 
 const explored = [
     {
