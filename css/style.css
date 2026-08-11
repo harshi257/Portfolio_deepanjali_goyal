@@ -833,14 +833,14 @@
  .skills-wheel {
      position: relative;
      width: min(100%, 640px);
-     height: 260px;
+     height: 650px;
      margin: 46px auto 10px;
  }
 
  .skill-node {
      position: absolute;
      transform: translate(-50%, -50%);
-     width: 110px;
+     width: 150px;
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -848,29 +848,21 @@
  }
 
  .skill-tile {
-     width: 58px;
-     height: 58px;
-     border-radius: 16px;
+     width: 72px;
+     height: 72px;
      display: flex;
      align-items: center;
      justify-content: center;
-     font-family: var(--mono);
-     font-weight: 700;
-     font-size: .78rem;
-     box-shadow: 0 8px 16px rgba(0, 0, 0, .3);
  }
 
  .skill-label {
-     width: 110px;
-     margin-top: 8px;
-
-     font-size: 10px;
-     line-height: 1.15;
+     width: 150px;
+     margin-top: 10px;
+     font-size: 11px;
+     line-height: 1.2;
      text-align: center;
-
      white-space: normal;
      overflow-wrap: break-word;
-     word-break: normal;
  }
 
  .arc-foot {

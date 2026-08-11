@@ -157,7 +157,7 @@ function layoutSkillsWheel() {
     const cy = h - 20;
 
     // Larger radius = more space between skills
-    const radius = Math.min(w / 2 - 80, h - 80);
+    const radius = Math.min(w / 2 - 20, h - 40);
 
     const n = skills.length;
 
