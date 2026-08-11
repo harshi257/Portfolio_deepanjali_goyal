@@ -146,32 +146,65 @@ const wheel = document.getElementById('skillsWheel');
 const tones = ['stone', 'walnut', 'black', 'olive', 'forest'];
 const toneBg = { stone: 'var(--stone)', walnut: 'var(--walnut)', black: 'var(--black)', olive: 'var(--olive-dp)', forest: 'var(--forest-dp)' };
 let skillTargets = [];
-
 function layoutSkillsWheel() {
     wheel.innerHTML = '';
     skillTargets = [];
-    const w = wheel.clientWidth, h = wheel.clientHeight;
-    const cx = w / 2, cy = h;
-    const radius = Math.min(w / 2 - 34, h - 30);
+
+    const w = wheel.clientWidth;
+    const h = wheel.clientHeight;
+
+    const cx = w / 2;
+    const cy = h - 20;
+
+    // Larger radius = more space between skills
+    const radius = Math.min(w / 2 - 80, h - 80);
+
     const n = skills.length;
+
     skills.forEach((s, i) => {
-        const angle = Math.PI - (i / (n - 1)) * Math.PI; // left (PI) → right (0), like a hand sweeping across the top
+
+        // Spread evenly from left → right
+        const angle = Math.PI - (i / (n - 1)) * Math.PI;
+
         const x = cx + radius * Math.cos(angle);
         const y = cy - radius * Math.sin(angle);
+
         const tone = tones[i % tones.length];
         const bg = toneBg[tone];
-        const fg = tone === 'stone' ? 'var(--stone-ink)' : 'var(--paper-text)';
+        const fg = tone === 'stone'
+            ? 'var(--stone-ink)'
+            : 'var(--paper-text)';
+
         const label = s.replace(/[\[\]]/g, '');
+
         const node = document.createElement('div');
         node.className = 'skill-node';
-        // start every tile folded at the pivot (bottom-centre), like hands at rest
-        node.style.left = `${cx}px`;
-        node.style.top = `${cy}px`;
+
+        node.style.left = `${x}px`;
+        node.style.top = `${y}px`;
         node.style.opacity = '0';
-        node.innerHTML = `<div class="skill-tile" style="background:${bg}; color:${fg};">${label.slice(0, 2).toUpperCase()}</div><div class="skill-label">${label}</div>`;
+
+        node.innerHTML = `
+            <div class="skill-tile"
+                 style="background:${bg}; color:${fg};">
+                ${label.slice(0, 2).toUpperCase()}
+            </div>
+
+            <div class="skill-label">
+                ${label}
+            </div>
+        `;
+
         wheel.appendChild(node);
-        skillTargets.push({ node, x, y, delay: i * 90 });
+
+        skillTargets.push({
+            node,
+            x,
+            y,
+            delay: i * 90
+        });
     });
+
     wheel.dataset.spun = '';
 }
 layoutSkillsWheel();

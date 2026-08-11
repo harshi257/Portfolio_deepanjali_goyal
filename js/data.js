@@ -711,7 +711,7 @@ const skills = [
     '[Canva]',
     '[WordPress (Content & SEO)]',
     '[Video Editing]',
-    '[Adobe Lightroom (Elementary Proficiency)]',
+    '[Adobe Lightroom]',
     '[Leadership]',
     '[Communication]',
     '[Problem Solving]',
