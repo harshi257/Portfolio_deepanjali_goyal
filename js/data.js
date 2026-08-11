@@ -1,8 +1,95 @@
 const projects = [
-    { code: 'PRJ_01', title: '[Project Name One]', image: 'images/projects/portfolio.png', desc: '[The problem, your role, and the outcome — a few sentences.]', tags: '[Design · Prototype]', link: '#' },
-    { code: 'PRJ_02', title: '[Project Name Two]', image: 'images/projects/portfolio.png', desc: '[The problem, your role, and the outcome — a few sentences.]', tags: '[Code · Research]', link: '#' },
-    { code: 'PRJ_03', title: '[Project Name Three]', image: 'images/projects/portfolio.png', desc: '[The problem, your role, and the outcome — a few sentences.]', tags: '[Branding]', link: '#' },
-    { code: 'PRJ_04', title: '[Project Name Four]', image: 'images/projects/portfolio.png', desc: '[The problem, your role, and the outcome — a few sentences.]', tags: '[Product · Strategy]', link: '#' },
+    {
+        code: 'PRJ_01',
+        title: '[Project Name One]',
+        image: 'images/projects/portfolio.png',
+        tracks: [
+            {
+                title: 'Song 1',
+                blurb: '[Short description of Song 1]',
+                detail: '[Full description of Song 1 — what it is, what you did, and what the outcome was.]'
+            },
+            {
+                title: 'Song 2',
+                blurb: '[Short description of Song 2]',
+                detail: '[Full description of Song 2 — what it is, what you did, and what the outcome was.]'
+            },
+            {
+                title: 'Song 3',
+                blurb: '[Short description of Song 3]',
+                detail: '[Full description of Song 3 — what it is, what you did, and what the outcome was.]'
+            }
+        ]
+    },
+
+    {
+        code: 'PRJ_02',
+        title: '[Project Name Two]',
+        image: 'images/projects/portfolio.png',
+        tracks: [
+            {
+                title: 'Song 1',
+                blurb: '[Short description of Song 1]',
+                detail: '[Full description of Song 1 — what it is, what you did, and what the outcome was.]'
+            },
+            {
+                title: 'Song 2',
+                blurb: '[Short description of Song 2]',
+                detail: '[Full description of Song 2 — what it is, what you did, and what the outcome was.]'
+            },
+            {
+                title: 'Song 3',
+                blurb: '[Short description of Song 3]',
+                detail: '[Full description of Song 3 — what it is, what you did, and what the outcome was.]'
+            }
+        ]
+    },
+
+    {
+        code: 'PRJ_03',
+        title: '[Project Name Three]',
+        image: 'images/projects/portfolio.png',
+        tracks: [
+            {
+                title: 'Song 1',
+                blurb: '[Short description of Song 1]',
+                detail: '[Full description of Song 1 — what it is, what you did, and what the outcome was.]'
+            },
+            {
+                title: 'Song 2',
+                blurb: '[Short description of Song 2]',
+                detail: '[Full description of Song 2 — what it is, what you did, and what the outcome was.]'
+            },
+            {
+                title: 'Song 3',
+                blurb: '[Short description of Song 3]',
+                detail: '[Full description of Song 3 — what it is, what you did, and what the outcome was.]'
+            }
+        ]
+    },
+
+    {
+        code: 'PRJ_04',
+        title: '[Project Name Four]',
+        image: 'images/projects/portfolio.png',
+        tracks: [
+            {
+                title: 'Song 1',
+                blurb: '[Short description of Song 1]',
+                detail: '[Full description of Song 1 — what it is, what you did, and what the outcome was.]'
+            },
+            {
+                title: 'Song 2',
+                blurb: '[Short description of Song 2]',
+                detail: '[Full description of Song 2 — what it is, what you did, and what the outcome was.]'
+            },
+            {
+                title: 'Song 3',
+                blurb: '[Short description of Song 3]',
+                detail: '[Full description of Song 3 — what it is, what you did, and what the outcome was.]'
+            }
+        ]
+    }
 ];
 
 // Poems — real text, pulled from your notebook. Positions (col/span/row) place them on the crossword grid.
@@ -620,49 +707,43 @@ const posts = [
 
 const skills = ['[Figma]', '[Photoshop]', '[Procreate]', '[Illustrator]', '[HTML/CSS/JS]', '[Python]', '[React]', '[Notion]', '[Premiere Pro]', '[After Effects]', '[English]', '[Hindi]'];
 
-// Explored — each genre is an "album"; each album holds "tracks" (sub-topics).
-// Tap the album for the tracklist, tap a track for the full note. Colour = disc label.
+// Explored — each category is a single entry.
+// Tap an entry to see one complete description.
+
 const explored = [
     {
-        genre: 'Wanderlust', color: '#FFFDD0', tracks: [
-            { title: '[Trip or route 1]', blurb: '[one line]', detail: '[Full note — where you went, what stuck with you.]' },
-            { title: '[Trip or route 2]', blurb: '[one line]', detail: '[Full note — where you went, what stuck with you.]' },
-            { title: '[Trip or route 3]', blurb: '[one line]', detail: '[Full note — where you went, what stuck with you.]' },
-        ]
+        genre: 'Wanderlust',
+        color: '#FFFDD0',
+        description: '[A description of your experiences with travel, places you have visited, routes you have taken, and what stayed with you.]'
     },
+
     {
-        genre: 'Slow Mornings', color: '#FFFDD0', tracks: [
-            { title: '[Ritual 1]', blurb: '[one line]', detail: '[Full note on the small ritual and why it matters.]' },
-            { title: '[Ritual 2]', blurb: '[one line]', detail: '[Full note on the small ritual and why it matters.]' },
-            { title: '[Ritual 3]', blurb: '[one line]', detail: '[Full note on the small ritual and why it matters.]' },
-        ]
+        genre: 'Slow Mornings',
+        color: '#FFFDD0',
+        description: '[A description of your slow mornings, rituals, routines, and the little things you enjoy.]'
     },
+
     {
-        genre: 'Film & Frames', color: '#FFFDD0', tracks: [
-            { title: '[Shot or roll 1]', blurb: '[one line]', detail: '[Full note on the photo, the camera, the moment.]' },
-            { title: '[Shot or roll 2]', blurb: '[one line]', detail: '[Full note on the photo, the camera, the moment.]' },
-            { title: '[Shot or roll 3]', blurb: '[one line]', detail: '[Full note on the photo, the camera, the moment.]' },
-        ]
+        genre: 'Film & Frames',
+        color: '#FFFDD0',
+        description: '[A description of your interest in photography, films, visual storytelling, memorable shots, or moments you have captured.]'
     },
+
     {
-        genre: 'Tarot & Stars', color: '#FFFDD0', tracks: [
-            { title: '[Reading or sign 1]', blurb: '[one line]', detail: '[Full note on what you read and why it stuck.]' },
-            { title: '[Reading or sign 2]', blurb: '[one line]', detail: '[Full note on what you read and why it stuck.]' },
-            { title: '[Reading or sign 3]', blurb: '[one line]', detail: '[Full note on what you read and why it stuck.]' },
-        ]
+        genre: 'Tarot & Stars',
+        color: '#FFFDD0',
+        description: '[A description of your interest in tarot, astrology, stars, readings, or the things you enjoy exploring around them.]'
     },
+
     {
-        genre: 'Paper Trails', color: '#FFFDD0', tracks: [
-            { title: '[Journal or letter 1]', blurb: '[one line]', detail: '[Full note on the handwritten thing and its story.]' },
-            { title: '[Journal or letter 2]', blurb: '[one line]', detail: '[Full note on the handwritten thing and its story.]' },
-            { title: '[Journal or letter 3]', blurb: '[one line]', detail: '[Full note on the handwritten thing and its story.]' },
-        ]
+        genre: 'Paper Trails',
+        color: '#FFFDD0',
+        description: '[A description of journals, letters, handwritten notes, collecting paper memories, or anything else that belongs here.]'
     },
+
     {
-        genre: 'Open Mic', color: '#FFFDD0', tracks: [
-            { title: '[Song or set 1]', blurb: '[one line]', detail: '[Full note on the performance or the piece.]' },
-            { title: '[Song or set 2]', blurb: '[one line]', detail: '[Full note on the performance or the piece.]' },
-            { title: '[Song or set 3]', blurb: '[one line]', detail: '[Full note on the performance or the piece.]' },
-        ]
-    },
+        genre: 'Open Mic',
+        color: '#FFFDD0',
+        description: '[A description of music, performances, singing, open mics, or the pieces you enjoy experiencing or performing.]'
+    }
 ];
