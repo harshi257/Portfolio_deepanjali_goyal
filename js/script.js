@@ -227,21 +227,6 @@ explored.forEach((a, ai) => {
 });
 
 
-function openAlbum(ai) {
-    const a = explored[ai];
-    const rows = a.tracks.map((t, ti) => `
-    <button class="track-row" data-album="${ai}" data-track="${ti}">
-        <span class="track-num mono">${String(ti + 1).padStart(2, '0')}</span>
-        <span class="track-title">${t.title}</span>
-        <span class="track-blurb">${t.blurb}</span>
-    </button>`).join('');
-    openModal({ eyebrow: 'GENRE FILE // TRACKLIST', title: a.genre, html: `<div class="tracklist">${rows}</div>`, meta: [`${a.tracks.length} TRACKS`, 'CRATE — EXPLORED'] });
-}
-function openTrack(ai, ti) {
-    const a = explored[ai], t = a.tracks[ti];
-    const html = `<p class="modal-body" style="white-space:pre-line; margin:0 0 4px;">${t.detail}</p><button class="back-btn" data-back="${ai}">← Back to ${a.genre}</button>`;
-    openModal({ eyebrow: `${a.genre.toUpperCase()} // TRACK ${String(ti + 1).padStart(2, '0')}`, title: t.title, html, meta: [] });
-}
 
 /* ============================================================
    MODAL — supports plain text (body) or interactive markup (html)
