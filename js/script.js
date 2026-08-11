@@ -163,7 +163,6 @@ function layoutSkillsWheel() {
 
     skills.forEach((s, i) => {
 
-        // Spread evenly from left → right
         const angle = Math.PI - (i / (n - 1)) * Math.PI;
 
         const x = cx + radius * Math.cos(angle);
@@ -180,20 +179,21 @@ function layoutSkillsWheel() {
         const node = document.createElement('div');
         node.className = 'skill-node';
 
-        node.style.left = `${x}px`;
-        node.style.top = `${y}px`;
+        // START at the bottom-center pivot
+        node.style.left = `${cx}px`;
+        node.style.top = `${cy}px`;
         node.style.opacity = '0';
 
         node.innerHTML = `
-            <div class="skill-tile"
-                 style="background:${bg}; color:${fg};">
-                ${label.slice(0, 2).toUpperCase()}
-            </div>
+        <div class="skill-tile"
+             style="background:${bg}; color:${fg};">
+            ${label.slice(0, 2).toUpperCase()}
+        </div>
 
-            <div class="skill-label">
-                ${label}
-            </div>
-        `;
+        <div class="skill-label">
+            ${label}
+        </div>
+    `;
 
         wheel.appendChild(node);
 

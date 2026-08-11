@@ -717,9 +717,7 @@ const skills = [
     '[Problem Solving]',
     '[Research & Ideation]',
     '[Creative Writing]',
-    '[Guitar]',
-    '[Photography]',
-    '[Travelling]'
+    '[Photography]'
 ];
 
 
