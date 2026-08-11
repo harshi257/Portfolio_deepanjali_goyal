@@ -88,18 +88,18 @@ function openProjectTrack(pi, ti) {
         meta: []
     });
 }
-```
+
 
 // Poems → crossword
 const crossword = document.getElementById('crossword');
 poems.forEach(p => {
     const el = document.createElement('button');
     el.className = 'xw-word';
-    el.style.gridColumn = `${ p.col } / span ${p.span}`;
-el.style.gridRow = `${p.row}`;
-el.textContent = p.title;
-el.addEventListener('click', () => openModal({ eyebrow: 'FROM THE NOTEBOOK', title: p.title, body: p.body, meta: [] }));
-crossword.appendChild(el);
+    el.style.gridColumn = `${p.col} / span ${p.span}`;
+    el.style.gridRow = `${p.row}`;
+    el.textContent = p.title;
+    el.addEventListener('click', () => openModal({ eyebrow: 'FROM THE NOTEBOOK', title: p.title, body: p.body, meta: [] }));
+    crossword.appendChild(el);
 });
 
 const moreList = document.getElementById('more-list');
@@ -197,20 +197,35 @@ const wheelObserver = new IntersectionObserver((entries) => {
 }, { threshold: .4 });
 wheelObserver.observe(wheel);
 
-// Explored → filmstrip reel: each genre is a frame (code, title, "view file" note); tap opens the tracklist modal
+// Explored → filmstrip reel
+// Each explored category opens ONE description.
+// No nested tracklist here.
+
 const exploredReel = document.getElementById('explored-reel');
+
 explored.forEach((a, ai) => {
     const el = document.createElement('button');
     el.className = 'frame';
+
     el.innerHTML = `
-    <div class="frame-thumb" style="background:${a.color};"></div>
-    <div class="frame-code mono">GEN_${String(ai + 1).padStart(2, '0')}</div>
-    <div class="frame-title">${a.genre}</div>
-    <div class="frame-note">view file →</div>
+        <div class="frame-thumb" style="background:${a.color};"></div>
+        <div class="frame-code mono">GEN_${String(ai + 1).padStart(2, '0')}</div>
+        <div class="frame-title">${a.genre}</div>
+        <div class="frame-note">view file →</div>
     `;
-    el.addEventListener('click', () => openAlbum(ai));
+
+    el.addEventListener('click', () => {
+        openModal({
+            eyebrow: `GEN_${String(ai + 1).padStart(2, '0')} // EXPLORED`,
+            title: a.genre,
+            body: a.description,
+            meta: ['CRATE — EXPLORED']
+        });
+    });
+
     exploredReel.appendChild(el);
 });
+
 
 function openAlbum(ai) {
     const a = explored[ai];
@@ -252,12 +267,26 @@ document.getElementById('modalClose').addEventListener('click', closeModal);
 overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-// Delegated clicks inside the modal for tracklist rows and back buttons
+
+// Delegated clicks inside the modal for project tracklist rows and back buttons
 modalBody.addEventListener('click', (e) => {
+
     const row = e.target.closest('.track-row');
-    if (row) { openTrack(Number(row.dataset.album), Number(row.dataset.track)); return; }
+
+    if (row) {
+        openProjectTrack(
+            Number(row.dataset.project),
+            Number(row.dataset.track)
+        );
+        return;
+    }
+
     const back = e.target.closest('.back-btn');
-    if (back) { openAlbum(Number(back.dataset.back)); return; }
+
+    if (back) {
+        openProject(Number(back.dataset.projectBack));
+        return;
+    }
 });
 
 /* ============================================================
