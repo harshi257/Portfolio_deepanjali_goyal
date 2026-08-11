@@ -833,6 +833,7 @@
  .skills-wheel {
      position: relative;
      width: min(100%, 640px);
+
      height: 650px;
      margin: 46px auto 10px;
  }
@@ -853,6 +854,11 @@
      display: flex;
      align-items: center;
      justify-content: center;
+     border-radius: 16px;
+     font-family: var(--mono);
+     font-weight: 700;
+     font-size: .78rem;
+     box-shadow: 0 8px 16px rgba(0, 0, 0, .3);
  }
 
  .skill-label {
