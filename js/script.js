@@ -1,33 +1,105 @@
 
+// Projects → CD crate
+// Each project is an album.
+// Click project → open tracklist → click track → open project detail.
 
-// Projects → CD crate (each project is an album; tap opens the project file directly)
 const projectColors = ['#D8A93B', '#C1502E', '#7C8B54', '#5C7A99', '#B4553D', '#3E7C6B'];
 const projectsTrack = document.getElementById('projects-track');
+
 projects.forEach((p, i) => {
     const color = projectColors[i % projectColors.length];
+
     const el = document.createElement('div');
     el.className = 'album-card';
+
     el.innerHTML = `
-    <div class="cd-disc"><div class="cd-label" style="background:${color};">${p.code}</div><div class="cd-hole"></div></div>
-    <div class="album-title">${p.title}</div>
-    <div class="album-sub">tap to open the file</div>
+        <div class="cd-disc">
+            <div class="cd-label" style="background:${color};">${p.code}</div>
+            <div class="cd-hole"></div>
+        </div>
+        <div class="album-title">${p.title}</div>
+        <div class="album-sub">tap to open the file</div>
     `;
-    el.addEventListener('click', () => openModal({ eyebrow: `${p.code} // PROJECT`, title: p.title, body: `${p.desc}\n\n${p.tags}`, meta: [p.link !== '#' ? `LINK — ${p.link}` : 'LINK — TBD'] }));
+
+    // First click → open project tracklist
+    el.addEventListener('click', () => openProject(i));
+
     projectsTrack.appendChild(el);
 });
-document.getElementById('projectsScrollLeft').addEventListener('click', () => projectsTrack.scrollBy({ left: -320, behavior: 'smooth' }));
-document.getElementById('projectsScrollRight').addEventListener('click', () => projectsTrack.scrollBy({ left: 320, behavior: 'smooth' }));
+
+document.getElementById('projectsScrollLeft').addEventListener('click', () => {
+    projectsTrack.scrollBy({
+        left: -320,
+        behavior: 'smooth'
+    });
+});
+
+document.getElementById('projectsScrollRight').addEventListener('click', () => {
+    projectsTrack.scrollBy({
+        left: 320,
+        behavior: 'smooth'
+    });
+});
+
+
+// Open a project's nested list
+function openProject(pi) {
+    const p = projects[pi];
+
+    const rows = p.tracks.map((t, ti) => `
+        <button class="track-row" data-project="${pi}" data-track="${ti}">
+            <span class="track-num mono">${String(ti + 1).padStart(2, '0')}</span>
+            <span class="track-title">${t.title}</span>
+            <span class="track-blurb">${t.blurb}</span>
+        </button>
+    `).join('');
+
+    openModal({
+        eyebrow: `${p.code} // PROJECT FILE`,
+        title: p.title,
+        html: `<div class="tracklist">${rows}</div>`,
+        meta: [
+            `${p.tracks.length} ENTRIES`,
+            'CRATE — PROJECTS'
+        ]
+    });
+}
+
+
+// Open an individual project entry
+function openProjectTrack(pi, ti) {
+    const p = projects[pi];
+    const t = p.tracks[ti];
+
+    const html = `
+        <p class="modal-body" style="white-space:pre-line; margin:0 0 4px;">
+            ${t.detail}
+        </p>
+
+        <button class="back-btn" data-project-back="${pi}">
+            ← Back to ${p.title}
+        </button>
+    `;
+
+    openModal({
+        eyebrow: `${p.title.toUpperCase()} // ${String(ti + 1).padStart(2, '0')}`,
+        title: t.title,
+        html: html,
+        meta: []
+    });
+}
+```
 
 // Poems → crossword
 const crossword = document.getElementById('crossword');
 poems.forEach(p => {
     const el = document.createElement('button');
     el.className = 'xw-word';
-    el.style.gridColumn = `${p.col} / span ${p.span}`;
-    el.style.gridRow = `${p.row}`;
-    el.textContent = p.title;
-    el.addEventListener('click', () => openModal({ eyebrow: 'FROM THE NOTEBOOK', title: p.title, body: p.body, meta: [] }));
-    crossword.appendChild(el);
+    el.style.gridColumn = `${ p.col } / span ${p.span}`;
+el.style.gridRow = `${p.row}`;
+el.textContent = p.title;
+el.addEventListener('click', () => openModal({ eyebrow: 'FROM THE NOTEBOOK', title: p.title, body: p.body, meta: [] }));
+crossword.appendChild(el);
 });
 
 const moreList = document.getElementById('more-list');
